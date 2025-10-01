@@ -25,14 +25,22 @@
                 <ul class="nav-links">
                     <li><a href="#about" id="navAbout">من نحن</a></li>
                     <li><a href="#portfolio" id="navPortfolio">تطبيقاتنا</a></li>
-                    <li><a href="#updates" id="navUpdates">الأخبار</a></li>
+                    <li><a href="#upcoming" id="navUpdates">الأخبار</a></li>
                     <li><a href="#contact" id="navContact">اتصل بنا</a></li>
                 </ul>
             </nav>
-            <div class="lang-switcher">
-                <button id="langAr" onclick="setLanguage('ar')" class="active">العربية</button>
-                <span>|</span>
-                <button id="langEn" onclick="setLanguage('en')">English</button>
+            <div class="header-controls">
+                <!-- <div class="theme-switcher">
+                    <button id="themeToggle" class="theme-btn" aria-pressed="false" title="تبديل الوضع">
+                        <span class="theme-icon light-icon">🌞</span>
+                        <span class="theme-icon dark-icon">🌙</span>
+                    </button>
+                </div> -->
+                <div class="lang-switcher">
+                    <button id="langAr" onclick="setLanguage('ar')" class="active">العربية</button>
+                    <span>|</span>
+                    <button id="langEn" onclick="setLanguage('en')">English</button>
+                </div>
             </div>
         </div>
     </header>
@@ -89,43 +97,151 @@
             <h3 id="portfolioHeading" data-aos="fade-right">تطبيقاتنا المنشورة</h3>
             <p id="portfolioSubText" data-aos="fade-left">إليك بعض من أبرز مشاريعنا التي أحدثت فرقًا في السوق.</p>
             <div class="portfolio-grid">
-                <div class="app-card" data-aos="flip-left">
-                    <img src="https://via.placeholder.com/400x300/0077B6/FFFFFF?text=Android+Shop" alt="تطبيق AndroidShop">
-                    <div class="app-card-content">
-                        <h4 id="app1Title"><span lang="en">AndroidShop</span> - متجر ذكي</h4>
-                        <p id="app1Desc">تطبيق <span lang="en">Android</span> تجاري متطور يوفر تجربة تسوق سلسة مع واجهة <span lang="en">Material Design</span> حديثة. يدعم الدفع الإلكتروني والتتبع الفوري.</p>
-                        <div class="app-stats">
-                            <span>⭐ 4.8</span>
-                            <span>📥 75K+</span>
-                            <span>🤖 <span lang="en">Android</span></span>
+                <!-- Morse Converter التطبيق الأول -->
+                <div class="app-card premium-app" data-aos="flip-left" 
+                     data-video-id="fJ9rUzIMcZQ" 
+                     data-play-store="https://play.google.com/store/apps/details?id=iq.cro.morse" 
+                     data-app-name="Morse Converter">
+                    <div class="app-image-container">
+                        <div class="morse-app-visual">
+                            <div class="app-icon-circle">
+                                <div class="morse-signals">
+                                    <span class="dot"></span>
+                                    <span class="dash"></span>
+                                    <span class="dot"></span>
+                                    <span class="dash"></span>
+                                </div>
+                                <div class="app-title">MORSE<br>CONVERTER</div>
+                            </div>
                         </div>
-                        <a href="#" target="_blank" class="btn secondary" id="app1CTA">حمله الآن</a>
+                        <div class="video-overlay">
+                            <div class="play-button">
+                                <span class="play-icon">▶️</span>
+                                <span class="play-text">مشاهدة المراجعة</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="app-card-content">
+                        <h4 id="app1Title"><span lang="en">Morse Converter</span> - محول الشفرة</h4>
+                        <p id="app1Desc">تطبيق <span lang="en">Android</span> عملي وبسيط يتيح لك تحويل النص إلى شفرة <span lang="en">Morse</span> والعكس بسرعة وسهولة. يدعم الأبجدية الإنجليزية والأرقام بالكامل مع واجهة سهلة الاستخدام.</p>
+                        <div class="app-stats">
+                            <span class="stat-item">⭐ 4.5</span>
+                            <span class="stat-item">📥 10+</span>
+                            <span class="stat-item">🔧 <span lang="en">Tools</span></span>
+                        </div>
+                        <div class="app-actions">
+                            <a href="https://play.google.com/store/apps/details?id=iq.cro.morse" target="_blank" class="btn primary download-btn" id="app1CTA">
+                                <span class="btn-icon">📱</span>
+                                <span class="btn-text">تحميل من Google Play</span>
+                            </a>
+                            <button class="btn secondary video-btn" data-video="fJ9rUzIMcZQ">
+                                <span class="btn-icon">🎥</span>
+                                <span class="btn-text">مشاهدة المراجعة</span>
+                            </button>
+                        </div>
                     </div>
                 </div>
-                <div class="app-card" data-aos="flip-left" data-aos-delay="150">
-                    <img src="https://via.placeholder.com/400x300/00B4D8/FFFFFF?text=Task+Pro" alt="تطبيق TaskPro">
+
+                <!-- TaskPro التطبيق الثاني - مخفي مؤقتاً -->
+                <!-- 
+                <div class="app-card premium-app" data-aos="flip-left" data-aos-delay="150" 
+                     data-video-id="Ks-_Mh1QhMc" 
+                     data-play-store="https://play.google.com/store/apps/details?id=com.cro.taskpro" 
+                     data-app-name="TaskPro">
+                    <div class="app-image-container">
+                        <img src="https://via.placeholder.com/400x300/00B4D8/FFFFFF?text=Task+Pro" alt="تطبيق TaskPro">
+                        <div class="video-overlay">
+                            <div class="play-button">
+                                <span class="play-icon">▶️</span>
+                                <span class="play-text">مشاهدة المراجعة</span>
+                            </div>
+                        </div>
+                    </div>
                     <div class="app-card-content">
                         <h4 id="app2Title"><span lang="en">TaskPro Android</span></h4>
                         <p id="app2Desc">تطبيق <span lang="en">Android</span> متطور لإدارة المهام مع واجهة مستخدم ذكية. يتضمن ميزات الذكاء الاصطناعي والمزامنة الفورية. زاد إنتاجية العملاء <span dir="ltr">50%</span>.</p>
                         <div class="app-stats">
-                            <span>⭐ 4.9</span>
-                            <span>📥 40K+</span>
-                            <span>🤖 <span lang="en">Android</span></span>
+                            <span class="stat-item">⭐ 4.9</span>
+                            <span class="stat-item">📥 40K+</span>
+                            <span class="stat-item">🤖 <span lang="en">Android</span></span>
                         </div>
-                        <a href="#" target="_blank" class="btn secondary" id="app2CTA">حمله الآن</a>
+                        <div class="app-actions">
+                            <a href="https://play.google.com/store/apps/details?id=com.cro.taskpro" target="_blank" class="btn primary download-btn" id="app2CTA">
+                                <span class="btn-icon">📱</span>
+                                <span class="btn-text">تحميل من Google Play</span>
+                            </a>
+                            <button class="btn secondary video-btn" data-video="Ks-_Mh1QhMc">
+                                <span class="btn-icon">🎥</span>
+                                <span class="btn-text">مشاهدة المراجعة</span>
+                            </button>
+                        </div>
                     </div>
                 </div>
-                <div class="app-card" data-aos="flip-left" data-aos-delay="300">
-                    <img src="https://via.placeholder.com/400x300/1A202C/FFFFFF?text=UI+Showcase" alt="متجر الواجهات">
+                -->
+
+                <!-- UI Showcase التطبيق الثالث - مخفي مؤقتاً -->
+                <!-- 
+                <div class="app-card premium-app" data-aos="flip-left" data-aos-delay="300" 
+                     data-video-id="BggrBf_sNDM" 
+                     data-play-store="https://play.google.com/store/apps/details?id=com.cro.uishowcase" 
+                     data-app-name="UI Showcase">
+                    <div class="app-image-container">
+                        <img src="https://via.placeholder.com/400x300/1A202C/FFFFFF?text=UI+Showcase" alt="متجر الواجهات">
+                        <div class="video-overlay">
+                            <div class="play-button">
+                                <span class="play-icon">▶️</span>
+                                <span class="play-text">مشاهدة المراجعة</span>
+                            </div>
+                        </div>
+                    </div>
                     <div class="app-card-content">
                         <h4 id="app3Title"><span lang="en">UI Showcase</span> - معرض الواجهات</h4>
                         <p id="app3Desc">تطبيق <span lang="en">Android</span> يعرض أحدث تصميمات <span lang="en">UI/UX</span> التي قمنا بإنشائها. واجهات مبتكرة تتبع <span lang="en">Material Design 3</span> مع تأثيرات تفاعلية متطورة.</p>
                         <div class="app-stats">
-                            <span>⭐ 4.8</span>
-                            <span>📥 30K+</span>
-                            <span>🎨 <span lang="en">UI/UX</span></span>
+                            <span class="stat-item">⭐ 4.8</span>
+                            <span class="stat-item">📥 30K+</span>
+                            <span class="stat-item">🎨 <span lang="en">UI/UX</span></span>
                         </div>
-                        <a href="#" target="_blank" class="btn secondary" id="app3CTA">زيارة المعرض</a>
+                        <div class="app-actions">
+                            <a href="https://play.google.com/store/apps/details?id=com.cro.uishowcase" target="_blank" class="btn primary download-btn" id="app3CTA">
+                                <span class="btn-icon">📱</span>
+                                <span class="btn-text">تحميل من Google Play</span>
+                            </a>
+                            <button class="btn secondary video-btn" data-video="BggrBf_sNDM">
+                                <span class="btn-icon">🎥</span>
+                                <span class="btn-text">مشاهدة المراجعة</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                -->
+            </div>
+
+            <!-- فيديو Modal -->
+            <div id="videoModal" class="video-modal" aria-hidden="true">
+                <div class="modal-backdrop" onclick="closeVideoModal()"></div>
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3 id="modalTitle">مراجعة التطبيق</h3>
+                        <button class="close-btn" onclick="closeVideoModal()" aria-label="إغلاق">
+                            <span>&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="video-container">
+                            <iframe id="videoFrame" 
+                                    src="" 
+                                    frameborder="0" 
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                    allowfullscreen>
+                            </iframe>
+                        </div>
+                        <div class="modal-actions">
+                            <button class="btn primary" id="modalDownloadBtn">
+                                <span class="btn-icon">📱</span>
+                                <span class="btn-text">تحميل التطبيق</span>
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -135,23 +251,96 @@
     <!-- فاصل بين الأقسام -->
     <div class="section-divider" data-aos="fade-in">
         <div class="divider-line"></div>
-        <div class="divider-icon">📰</div>
+        <div class="divider-icon">🚀</div>
         <div class="divider-line"></div>
     </div>
 
-    <section id="updates" class="section updates">
+    <section id="upcoming" class="section upcoming-app">
         <div class="container">
-            <h3 id="updatesHeading" data-aos="fade-up">آخر الأخبار والمنشورات</h3>
-            <div class="updates-grid">
-                <div class="update-card" data-aos="slide-up">
-                    <h4 id="post1Title">شراكة جديدة مع [اسم العميل]</h4>
-                    <p id="post1Desc">سعداء بالإعلان عن تعاوننا...</p>
-                    <a href="#" id="post1Link">اقرأ المزيد</a>
-                </div>
-                <div class="update-card" data-aos="slide-up" data-aos-delay="150">
-                    <h4 id="post2Title">إطلاق ميزة [اسم الميزة] الجديدة</h4>
-                    <p id="post2Desc">قمنا بتحديث تطبيق [اسم التطبيق]...</p>
-                    <a href="#" id="post2Link">اقرأ المزيد</a>
+            <h3 id="upcomingHeading" data-aos="fade-up">تطبيق قادم</h3>
+            <p id="upcomingSubText" data-aos="fade-left">نحن نعمل على تطوير تطبيق جديد رائع سيغير طريقة استخدام الأدوات على هاتفك!</p>
+            
+            <div class="coming-soon-container" data-aos="zoom-in" data-aos-delay="200">
+                <div class="coming-soon-card">
+                    <div class="coming-soon-visual">
+                        <div class="mytools-icon">
+                            <div class="tools-grid">
+                                <div class="tool-item" title="QR Code Generator">📱</div>
+                                <div class="tool-item" title="Video to Audio Converter">🎵</div>
+                                <div class="tool-item" title="Color Picker">🎨</div>
+                                <div class="tool-item" title="Image to PDF">📄</div>
+                                <div class="tool-item" title="Audio Recorder">🎤</div>
+                                <div class="tool-item" title="More Tools Coming">➕</div>
+                            </div>
+                            <div class="coming-soon-badge">قريباً</div>
+                        </div>
+                    </div>
+                    <div class="coming-soon-content">
+                        <h4 id="mytoolsTitle"><span lang="en">MyTools</span> - مجموعة الأدوات الذكية</h4>
+                        <p id="mytoolsDesc">تطبيق شامل يجمع أهم الأدوات الرقمية في مكان واحد. من إنشاء رموز QR إلى تحويل الفيديو للصوت، ومن انتقاء الألوان إلى تحويل الصور لـPDF وتسجيل الصوت - كل ما تحتاجه في تطبيق واحد بتصميم عصري وسهل الاستخدام.</p>
+                        
+                        <div class="feature-list">
+                            <div class="feature-item">
+                                <span class="feature-icon">📱</span>
+                                <span class="feature-text" id="feature1Text">مولد رموز QR ذكي</span>
+                            </div>
+                            <div class="feature-item">
+                                <span class="feature-icon">🎵</span>
+                                <span class="feature-text" id="feature2Text">محول الفيديو إلى صوت</span>
+                            </div>
+                            <div class="feature-item">
+                                <span class="feature-icon">🎨</span>
+                                <span class="feature-text" id="feature3Text">منتقي الألوان المتقدم</span>
+                            </div>
+                            <div class="feature-item">
+                                <span class="feature-icon">📄</span>
+                                <span class="feature-text" id="feature4Text">تحويل الصور إلى PDF</span>
+                            </div>
+                            <div class="feature-item">
+                                <span class="feature-icon">🎤</span>
+                                <span class="feature-text" id="feature5Text">مسجل صوتي احترافي</span>
+                            </div>
+                            <div class="feature-item">
+                                <span class="feature-icon">✨</span>
+                                <span class="feature-text" id="feature6Text">والمزيد قريباً...</span>
+                            </div>
+                        </div>
+                        
+                        <div class="coming-soon-status">
+                            <div class="status-text">
+                                <span class="status-icon">⏳</span>
+                                <span id="comingSoonText">قيد التطوير... سيتم إطلاقه قريباً!</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill"></div>
+                            </div>
+                        </div>
+                         <!-- 
+                        <div class="notify-section">
+                            <p id="notifyText">أريد إشعاراً عند الإطلاق؟</p>
+                            
+                            < نموذج الإشعار -->
+                              <!-- 
+                            <div id="notificationForm" class="notification-form">
+                                <div class="form-row">
+                                    <input type="email" 
+                                           id="notifyEmail" 
+                                           placeholder="بريدك الإلكتروني" 
+                                           data-placeholder-key="emailPlaceholder"
+                                           required>
+                                    <button type="button" class="btn primary notify-btn" id="notifyBtn">
+                                        <span class="btn-icon">🔔</span>
+                                        <span class="btn-text" id="notifyBtnText">أعلمني عند الإطلاق</span>
+                                    </button>
+                                </div>
+                                <div class="notification-status" id="notificationStatus"></div>
+                            </div>
+                        </div>
+                         -->
+
+
+                
+                    </div>
                 </div>
             </div>
         </div>
@@ -232,7 +421,7 @@
                         <li><a href="#about" id="footerServiceImprovement">تحسين التطبيقات</a></li>
                     </ul>
                 </div>
-                <div class="footer-section">
+                <!-- <div class="footer-section">
                     <h4 id="footerContactTitle">تواصل معنا</h4>
                     <div class="social-links">
                         <a href="#" aria-label="Twitter">🐦</a>
@@ -240,7 +429,7 @@
                         <a href="#" aria-label="GitHub">🔗</a>
                         <a href="#" aria-label="Instagram">📷</a>
                     </div>
-                </div>
+                </div> -->
             </div>
             <div class="footer-bottom">
                 <p id="footerText">&copy; 2024. CRO. جميع الحقوق محفوظة.</p>

@@ -26,9 +26,9 @@ const translations = {
         portfolioHeading: 'Our Published Apps',
         portfolioSubText: 'Here are some of our outstanding projects that have made a difference in the market.',
         
-        // التطبيق الأول
-        app1Title: 'AndroidShop - Smart Store',
-        app1Desc: 'Advanced Android e-commerce app providing seamless shopping experience with modern Material Design interface. Supports electronic payments and real-time tracking.',
+        // التطبيق الأول - Morse Converter
+        app1Title: 'Morse Converter - Code Translator',
+        app1Desc: 'Simple and practical Android app that allows you to convert text to Morse code and vice versa quickly and easily. Full support for English alphabet and numbers with easy-to-use interface.',
         app1CTA: 'Download Now',
 
         // التطبيق الثاني
@@ -69,9 +69,30 @@ const translations = {
         
         // نصوص الـ placeholders
         namePlaceholder: 'Full Name',
-        emailPlaceholder: 'Email Address',
+        emailPlaceholder: 'Your Email Address',
         phonePlaceholder: 'Phone Number',
         messagePlaceholder: 'Write your message here...',
+        
+        // أزرار الفيديو والتحميل
+        watchReviewBtn: 'Watch Review',
+        downloadFromPlayBtn: 'Download from Google Play',
+        
+        // MyTools Coming Soon Section
+        upcomingHeading: 'Coming Soon App',
+        upcomingSubText: "We're working on an amazing new app that will change how you use tools on your phone!",
+        mytoolsTitle: 'MyTools - Smart Tools Collection',
+        mytoolsDesc: 'A comprehensive app that brings together the most important digital tools in one place. From creating QR codes to converting video to audio, from color picking to converting images to PDF and audio recording - everything you need in one app with a modern and easy-to-use design.',
+        comingSoonText: 'Under development... Coming soon!',
+        notifyText: 'Want to be notified when it launches?',
+        notifyBtn: 'Notify me on launch',
+        
+        // MyTools Features
+        feature1Text: 'Smart QR Code Generator',
+        feature2Text: 'Video to Audio Converter',
+        feature3Text: 'Advanced Color Picker',
+        feature4Text: 'Image to PDF Converter',
+        feature5Text: 'Professional Audio Recorder',
+        feature6Text: 'More coming soon...',
         
         // التذييل
         footerServicesTitle: 'Our Services',
@@ -107,9 +128,9 @@ const translations = {
         portfolioHeading: 'تطبيقاتنا المنشورة',
         portfolioSubText: 'إليك بعض من أبرز مشاريعنا التي أحدثت فرقًا في السوق.',
         
-        // التطبيق الأول
-        app1Title: 'متجر أندرويد شوب - متجر ذكي',
-        app1Desc: 'تطبيق أندرويد تجاري متطور يوفر تجربة تسوق سلسة مع واجهة تصميم عصرية حديثة. يدعم الدفع الإلكتروني والتتبع الفوري.',
+        // التطبيق الأول - Morse Converter
+        app1Title: 'محول مورس - محول الشفرة',
+        app1Desc: 'تطبيق أندرويد عملي وبسيط يتيح لك تحويل النص إلى شفرة مورس والعكس بسرعة وسهولة. يدعم الأبجدية الإنجليزية والأرقام بالكامل مع واجهة سهلة الاستخدام.',
         app1CTA: 'حمله الآن',
 
         // التطبيق الثاني
@@ -150,9 +171,30 @@ const translations = {
         
         // نصوص الـ placeholders
         namePlaceholder: 'الاسم الكامل',
-        emailPlaceholder: 'البريد الإلكتروني',
+        emailPlaceholder: 'بريدك الإلكتروني',
         phonePlaceholder: 'رقم الهاتف',
         messagePlaceholder: 'اكتب رسالتك هنا...',
+        
+        // أزرار الفيديو والتحميل
+        watchReviewBtn: 'مشاهدة المراجعة',
+        downloadFromPlayBtn: 'تحميل من Google Play',
+        
+        // MyTools Coming Soon Section
+        upcomingHeading: 'تطبيق قادم',
+        upcomingSubText: 'نحن نعمل على تطوير تطبيق جديد رائع سيغير طريقة استخدام الأدوات على هاتفك!',
+        mytoolsTitle: 'MyTools - مجموعة الأدوات الذكية',
+        mytoolsDesc: 'تطبيق شامل يجمع أهم الأدوات الرقمية في مكان واحد. من إنشاء رموز QR إلى تحويل الفيديو للصوت، ومن انتقاء الألوان إلى تحويل الصور لـPDF وتسجيل الصوت - كل ما تحتاجه في تطبيق واحد بتصميم عصري وسهل الاستخدام.',
+        comingSoonText: 'قيد التطوير... سيتم إطلاقه قريباً!',
+        notifyText: 'أريد إشعاراً عند الإطلاق؟',
+        notifyBtn: 'أعلمني عند الإطلاق',
+        
+        // MyTools Features
+        feature1Text: 'مولد رموز QR ذكي',
+        feature2Text: 'محول الفيديو إلى صوت',
+        feature3Text: 'منتقي الألوان المتقدم',
+        feature4Text: 'تحويل الصور إلى PDF',
+        feature5Text: 'مسجل صوتي احترافي',
+        feature6Text: 'والمزيد قريباً...',
         
         // التذييل
         footerServicesTitle: 'خدماتنا',
@@ -529,15 +571,178 @@ function setLanguage(lang) {
     localStorage.setItem('preferredLanguage', lang);
 }
 
+// إدارة الثيم (الوضع الفاتح/الداكن)
+class ThemeManager {
+    constructor() {
+        this.mode = 'auto'; // 'light' | 'dark' | 'auto'
+        this.currentTheme = 'light';
+        this.themeToggle = null;
+        this.systemListener = null;
+        this.init();
+    }
+
+    getSystemTheme() {
+        return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    }
+
+    computeEffectiveTheme(mode) {
+        if (mode === 'auto') return this.getSystemTheme();
+        return mode;
+    }
+
+    init() {
+        // قراءة الوضع المحفوظ ('auto' الافتراضي)
+        const savedMode = localStorage.getItem('themeMode') || 'auto';
+        this.mode = savedMode;
+        const effective = this.computeEffectiveTheme(this.mode);
+        this.applyTheme(effective, false);
+        this.updateModeAttributes();
+
+        // زر التبديل
+        this.themeToggle = document.getElementById('themeToggle');
+        if (this.themeToggle) {
+            this.themeToggle.addEventListener('click', () => this.cycleMode());
+        }
+
+        // مراقبة تغيّر نظام التشغيل عند الوضع التلقائي
+        const mql = window.matchMedia('(prefers-color-scheme: dark)');
+        this.systemListener = (e) => {
+            if (this.mode === 'auto') {
+                const eff = this.computeEffectiveTheme('auto');
+                this.applyTheme(eff, false);
+            }
+        };
+        mql.addEventListener('change', this.systemListener);
+
+        // تحديث عنوان الزر
+        this.updateToggleTitle();
+    }
+
+    cycleMode() {
+        const order = ['light', 'dark', 'auto'];
+        const idx = order.indexOf(this.mode);
+        const next = order[(idx + 1) % order.length];
+        this.setMode(next);
+    }
+
+    setMode(mode) {
+        this.mode = mode;
+        localStorage.setItem('themeMode', mode);
+        const eff = this.computeEffectiveTheme(mode);
+        this.applyTheme(eff, true);
+        this.updateModeAttributes();
+        this.updateToggleTitle();
+    }
+
+    updateModeAttributes() {
+        const html = document.documentElement;
+        html.setAttribute('data-theme-mode', this.mode);
+        // aria-pressed تعكس إن كان الوضع النهائي داكن
+        if (this.themeToggle) {
+            this.themeToggle.setAttribute('aria-pressed', this.currentTheme === 'dark');
+        }
+    }
+
+    updateToggleTitle() {
+        if (!this.themeToggle) return;
+        const titles = {
+            light: 'الوضع الحالي: فاتح (انقر للتبديل إلى داكن)',
+            dark: 'الوضع الحالي: داكن (انقر للتبديل إلى تلقائي)',
+            auto: 'الوضع الحالي: تلقائي (انقر للتبديل إلى فاتح)'
+        };
+        this.themeToggle.setAttribute('title', titles[this.mode] || 'تبديل الوضع');
+    }
+
+    applyTheme(theme, withTransition = true) {
+        this.currentTheme = theme;
+        const html = document.documentElement;
+        
+        // تفعيل انتقال ناعم لفترة قصيرة
+        if (withTransition) {
+            html.classList.add('theme-transition');
+            setTimeout(() => html.classList.remove('theme-transition'), 250);
+        }
+        
+        // تطبيق الثيم
+        html.setAttribute('data-theme', theme);
+        
+        // حفظ الثيم الفعلي للتوافق الرجعي
+        localStorage.setItem('theme', theme);
+        
+        // تحديث attributes للمعلومات الإضافية
+        this.updateModeAttributes();
+        
+        // إضافة تأثير ريبل على زر الثيم (تأثير بصري)
+        if (withTransition && this.themeToggle) {
+            // تأثير الضغط
+            this.themeToggle.style.transform = 'scale(0.9)';
+            this.themeToggle.style.opacity = '0.7';
+            
+            // إضافة فئة تحميل مؤقتة
+            this.themeToggle.classList.add('theme-switching');
+            
+            setTimeout(() => {
+                this.themeToggle.style.transform = '';
+                this.themeToggle.style.opacity = '';
+                this.themeToggle.classList.remove('theme-switching');
+            }, 200);
+        }
+        
+        // بث حدث تغيير الثيم
+        document.dispatchEvent(new CustomEvent('themeChanged', { 
+            detail: { 
+                theme, 
+                mode: this.mode, 
+                isSystemMode: this.mode === 'auto',
+                systemTheme: this.getSystemTheme()
+            } 
+        }));
+        
+        // لوغ تفصيلي لاستكشاف الأخطاء
+        console.log(`🎨 Theme System: Applied "${theme}" (Mode: ${this.mode}, System: ${this.getSystemTheme()})`);
+    }
+
+    getCurrentTheme() {
+        return this.currentTheme;
+    }
+}
+
+// إعداد مفاتيح EmailJS - استبدل القيم بين الأقواس المزدوجة بالقيم الحقيقية من حسابك في EmailJS
+const EMAILJS_PUBLIC_KEY = '{{EMAILJS_PUBLIC_KEY}}';
+const EMAILJS_SERVICE_ID = '{{EMAILJS_SERVICE_ID}}';
+const EMAILJS_TEMPLATE_ID = '{{EMAILJS_TEMPLATE_ID}}';
+let EMAILJS_READY = false;
+
+function initEmailJS() {
+    if (window.emailjs && EMAILJS_PUBLIC_KEY && !EMAILJS_PUBLIC_KEY.includes('{{')) {
+        try {
+            window.emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
+            EMAILJS_READY = true;
+            console.log('EmailJS initialized');
+        } catch (e) {
+            console.warn('EmailJS init failed:', e);
+        }
+    } else {
+        console.warn('EmailJS is not configured. Please set EMAILJS_PUBLIC_KEY, EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID.');
+    }
+}
+
 // تهيئة الموقع عند التحميل
 function initializeWebsite() {
     // تشغيل مكتبة AOS
     AOS.init({
-        duration: 1000,    // مدة ظهور التأثير بالملي ثانية
-        once: true,        // التأثير يحدث مرة واحدة فقط عند النزول
-        mirror: false,     // لا يحدث التأثير عند الصعود للأعلى
-        offset: 50,        // المسافة قبل بدء التأثير
+        duration: 800,
+        once: true,
+        mirror: false,
+        offset: 50,
+        easing: 'ease-out-cubic'
     });
+    
+    // تهيئة مدير الثيم
+    window.themeManager = new ThemeManager();
+
+    // تهيئة EmailJS
+    initEmailJS();
     
     // قراءة اللغة المفضلة من التخزين المحلي
     const savedLanguage = localStorage.getItem('preferredLanguage') || 'ar';
@@ -553,19 +758,559 @@ function initializeWebsite() {
     addInteractiveEffects();
     
     // إضافة smooth scroll للروابط
+    setupSmoothScroll();
+    
+    // معالجة تأثيرات التحريك المتقدمة
+    setupAdvancedAnimations();
+    
+    // تهيئة مميزات الفيديو
+    initializeVideoFeatures();
+    
+    // تهيئة تفاعل MyTools
+    setupMyToolsNotification();
+}
+
+// إعداد smooth scroll محسّن
+function setupSmoothScroll() {
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             e.preventDefault();
             const target = document.querySelector(this.getAttribute('href'));
             if (target) {
-                target.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
+                const headerHeight = document.querySelector('.main-header')?.offsetHeight || 80;
+                const targetPosition = target.offsetTop - headerHeight;
+                
+                window.scrollTo({
+                    top: targetPosition,
+                    behavior: 'smooth'
                 });
             }
         });
     });
 }
 
+// تأثيرات متقدمة
+function setupAdvancedAnimations() {
+    // تأثير parallax للهيرو
+    const hero = document.querySelector('.hero');
+    if (hero) {
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const rate = scrolled * -0.5;
+            hero.style.transform = `translateY(${rate}px)`;
+        });
+    }
+    
+    // تأثير حركة الفأرة للبطاقات
+    document.addEventListener('mousemove', (e) => {
+        const cards = document.querySelectorAll('.app-card, .service-item');
+        cards.forEach(card => {
+            if (card.matches(':hover')) {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                const rotateX = (y - centerY) / 10;
+                const rotateY = (centerX - x) / 10;
+                
+                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.02)`;
+            }
+        });
+    });
+    
+    // إعادة تعيين البطاقات عند مغادرة الفأرة
+    document.addEventListener('mouseleave', () => {
+        const cards = document.querySelectorAll('.app-card, .service-item');
+        cards.forEach(card => {
+            card.style.transform = '';
+        });
+    });
+}
+
 // تشغيل الموقع عند التحميل الكامل
 window.addEventListener('load', initializeWebsite);
+
+
+/*
+====================================
+  تفاعل قسم MyTools القادم
+====================================
+*/
+
+// إدارة زر الإشعار لـ MyTools
+function setupMyToolsNotification() {
+    const notifyBtn = document.getElementById('notifyBtn');
+    if (!notifyBtn) return;
+    
+    notifyBtn.addEventListener('click', async function() {
+        const btnText = notifyBtn.querySelector('.btn-text');
+        const btnIcon = notifyBtn.querySelector('.btn-icon');
+        const emailInput = document.getElementById('notifyEmail');
+        const statusBox = document.getElementById('notificationStatus');
+
+        const currentLang = getCurrentLang();
+        const messages = {
+            ar: {
+                invalid: 'يرجى إدخال بريد إلكتروني صالح.',
+                loading: 'جارٍ التسجيل لإشعار الإطلاق...',
+                success: 'تم تسجيل بريدك بنجاح! سنقوم بإشعارك عند الإطلاق.',
+                error: 'حدث خطأ أثناء التسجيل. حاول مرة أخرى لاحقاً.',
+                notConfigured: 'النظام غير مهيأ للإرسال بعد. يرجى إعداد EmailJS.',
+                btnLoading: '...جارٍ التسجيل',
+                btnDone: 'تم التسجيل',
+                iconLoading: '⏳',
+                iconDone: '✅'
+            },
+            en: {
+                invalid: 'Please enter a valid email address.',
+                loading: 'Registering for launch notification...',
+                success: 'Your email has been registered! We will notify you on launch.',
+                error: 'An error occurred during registration. Please try again later.',
+                notConfigured: 'Email delivery is not configured yet. Please set up EmailJS.',
+                btnLoading: 'Registering...',
+                btnDone: 'Registered',
+                iconLoading: '⏳',
+                iconDone: '✅'
+            }
+        };
+        const msg = messages[currentLang];
+
+        // Validate email
+        const email = (emailInput?.value || '').trim();
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!email || !emailRegex.test(email)) {
+            if (emailInput) emailInput.classList.add('error');
+            if (statusBox) {
+                statusBox.className = 'notification-status show error';
+                statusBox.textContent = msg.invalid;
+            }
+            return;
+        }
+        if (emailInput) emailInput.classList.remove('error');
+
+        // Loading state
+        notifyBtn.classList.add('loading');
+        btnIcon.textContent = msg.iconLoading;
+        btnText.textContent = msg.btnLoading;
+        if (statusBox) {
+            statusBox.className = 'notification-status show loading';
+            statusBox.textContent = msg.loading;
+        }
+
+        // Ensure EmailJS init
+        if (!EMAILJS_READY) {
+            initEmailJS();
+        }
+
+        if (!EMAILJS_READY || EMAILJS_SERVICE_ID.includes('{{') || EMAILJS_TEMPLATE_ID.includes('{{')) {
+            // Not configured
+            if (statusBox) {
+                statusBox.className = 'notification-status show error';
+                statusBox.textContent = msg.notConfigured;
+            }
+            notifyBtn.classList.remove('loading');
+            btnIcon.textContent = '⚠️';
+            btnText.textContent = msg.notConfigured;
+            return;
+        }
+
+        try {
+            const templateParams = {
+                user_email: email,
+                app_name: 'MyTools',
+                message: 'Notify me when MyTools launches',
+                timestamp: new Date().toISOString()
+            };
+            await window.emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, templateParams);
+
+            // Success UI
+            notifyBtn.classList.remove('loading');
+            notifyBtn.classList.add('confirmed');
+            btnIcon.textContent = msg.iconDone;
+            btnText.textContent = msg.btnDone;
+            notifyBtn.disabled = true;
+            notifyBtn.style.cursor = 'default';
+            if (statusBox) {
+                statusBox.className = 'notification-status show success';
+                statusBox.textContent = msg.success;
+            }
+            showNotificationSuccess(msg.success);
+        } catch (e) {
+            console.error('EmailJS send failed:', e);
+            notifyBtn.classList.remove('loading');
+            if (statusBox) {
+                statusBox.className = 'notification-status show error';
+                statusBox.textContent = msg.error;
+            }
+            btnIcon.textContent = '⚠️';
+            btnText.textContent = msg.error;
+        }
+    });
+}
+
+// إظهار رسالة النجاح
+function showNotificationSuccess(message) {
+    // إنشاء عنصر الرسالة
+    const successMsg = document.createElement('div');
+    successMsg.className = 'notification-success';
+    successMsg.innerHTML = `
+        <div class="success-content">
+            <span class="success-icon">🎉</span>
+            <span class="success-text">${message}</span>
+        </div>
+    `;
+    
+    // إضافة أنماط الرسالة
+    Object.assign(successMsg.style, {
+        position: 'fixed',
+        top: '20px',
+        right: '20px',
+        background: 'rgba(76, 175, 80, 0.95)',
+        color: 'white',
+        padding: '15px 20px',
+        borderRadius: '10px',
+        boxShadow: '0 8px 25px rgba(76, 175, 80, 0.3)',
+        zIndex: '9999',
+        transform: 'translateX(400px)',
+        transition: 'all 0.5s ease',
+        backdropFilter: 'blur(10px)',
+        maxWidth: '300px',
+        fontSize: '0.9rem',
+        fontWeight: '500'
+    });
+    
+    // أنماط المحتوى الداخلي
+    const successContent = successMsg.querySelector('.success-content');
+    Object.assign(successContent.style, {
+        display: 'flex',
+        alignItems: 'center',
+        gap: '10px'
+    });
+    
+    // إضافة الرسالة للصفحة
+    document.body.appendChild(successMsg);
+    
+    // تأثير الظهور
+    setTimeout(() => {
+        successMsg.style.transform = 'translateX(0)';
+    }, 100);
+    
+    // إزالة الرسالة بعد 4 ثوانٍ
+    setTimeout(() => {
+        successMsg.style.transform = 'translateX(400px)';
+        setTimeout(() => {
+            document.body.removeChild(successMsg);
+        }, 500);
+    }, 4000);
+}
+
+// تهيئة تفاعل MyTools عند تحميل الصفحة
+document.addEventListener('DOMContentLoaded', function() {
+    setupMyToolsNotification();
+});
+
+// تأكد من إعادة تهيئة التفاعل عند تغيير اللغة
+document.addEventListener('languageChanged', function() {
+    setupMyToolsNotification();
+});
+
+
+/*
+====================================
+  مميزات الفيديو والمودال المتقدمة
+====================================
+*/
+
+// متغيرات عامة للفيديو
+let currentVideoData = {
+    videoId: '',
+    appName: '',
+    playStoreLink: ''
+};
+
+// إعداد مستمعات الأحداث للتطبيقات
+document.addEventListener('DOMContentLoaded', function() {
+    initializeVideoFeatures();
+});
+
+function initializeVideoFeatures() {
+    console.log('بدء تهيئة مميزات الفيديو...');
+    
+    // إعداد أزرار الفيديو
+    const videoButtons = document.querySelectorAll('.video-btn');
+    const appCards = document.querySelectorAll('.app-card.premium-app');
+    
+    console.log('تم العثور على', videoButtons.length, 'أزرار فيديو');
+    console.log('تم العثور على', appCards.length, 'بطاقات تطبيقات');
+    
+    // إضافة مستمعات الأحداث لأزرار الفيديو
+    videoButtons.forEach(button => {
+        button.addEventListener('click', function(e) {
+            e.preventDefault();
+            console.log('تم النقر على زر الفيديو');
+            
+            const videoId = this.getAttribute('data-video');
+            const appCard = this.closest('.app-card');
+            const appName = appCard.getAttribute('data-app-name');
+            const playStoreLink = appCard.getAttribute('data-play-store');
+            
+            console.log('معرف الفيديو:', videoId);
+            console.log('اسم التطبيق:', appName);
+            
+            openVideoModal(videoId, appName, playStoreLink);
+        });
+    });
+    
+    // إضافة مستمعات الأحداث للصور (تأثير hover)
+    appCards.forEach(card => {
+        const imageContainer = card.querySelector('.app-image-container');
+        const playButton = card.querySelector('.play-button');
+        
+        if (imageContainer && playButton) {
+            imageContainer.addEventListener('click', function() {
+                const videoId = card.getAttribute('data-video-id');
+                const appName = card.getAttribute('data-app-name');
+                const playStoreLink = card.getAttribute('data-play-store');
+                
+                openVideoModal(videoId, appName, playStoreLink);
+            });
+            
+            // تأثير hover متقدم
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-20px) scale(1.05)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        }
+    });
+    
+    // إعداد مستمعات إغلاق المودال
+    const modal = document.getElementById('videoModal');
+    const closeBtn = modal?.querySelector('.close-btn');
+    const backdrop = modal?.querySelector('.modal-backdrop');
+    
+    if (closeBtn) {
+        closeBtn.addEventListener('click', closeVideoModal);
+    }
+    
+    if (backdrop) {
+        backdrop.addEventListener('click', closeVideoModal);
+    }
+    
+    // إغلاق بمفتاح ESC
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && modal?.classList.contains('active')) {
+            closeVideoModal();
+        }
+    });
+}
+
+// فتح مودال الفيديو
+function openVideoModal(videoId, appName, playStoreLink) {
+    console.log('فتح مودال الفيديو بالمعرف:', videoId);
+    
+    const modal = document.getElementById('videoModal');
+    const modalTitle = document.getElementById('modalTitle');
+    const videoFrame = document.getElementById('videoFrame');
+    const downloadBtn = document.getElementById('modalDownloadBtn');
+    
+    console.log('عناصر المودال:', {
+        modal: modal ? 'موجود' : 'غير موجود',
+        videoFrame: videoFrame ? 'موجود' : 'غير موجود',
+        modalTitle: modalTitle ? 'موجود' : 'غير موجود'
+    });
+    
+    if (!modal || !videoFrame) {
+        console.error('خطأ: عناصر المودال غير موجودة!');
+        return;
+    }
+    
+    // حفظ بيانات التطبيق الحالي
+    currentVideoData = {
+        videoId: videoId,
+        appName: appName,
+        playStoreLink: playStoreLink
+    };
+    
+    // تحديث عنوان المودال
+    if (modalTitle) {
+        modalTitle.textContent = `مراجعة تطبيق ${appName}`;
+    }
+    
+    // تحديث رابط التحميل
+    if (downloadBtn) {
+        downloadBtn.onclick = function() {
+            window.open(playStoreLink, '_blank');
+            trackAppDownload(appName);
+        };
+    }
+    
+    // تحميل الفيديو من YouTube
+    const embedUrl = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1&showinfo=0&controls=1`;
+    videoFrame.src = embedUrl;
+    
+    // إظهار المودال مع تأثير
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+    
+    // تتبع مشاهدة الفيديو (Analytics)
+    trackVideoView(appName, videoId);
+}
+
+// إغلاق مودال الفيديو
+function closeVideoModal() {
+    console.log('محاولة إغلاق مودال الفيديو...');
+    
+    const modal = document.getElementById('videoModal');
+    const videoFrame = document.getElementById('videoFrame');
+    
+    if (!modal) return;
+    
+    // إخفاء المودال
+    modal.classList.remove('active');
+    document.body.style.overflow = 'auto';
+    
+    // إيقاف الفيديو
+    if (videoFrame) {
+        videoFrame.src = '';
+    }
+    
+    // مسح البيانات
+    currentVideoData = {
+        videoId: '',
+        appName: '',
+        playStoreLink: ''
+    };
+}
+
+// تتبع مشاهدة الفيديو (يمكن ربطه بـ Google Analytics)
+function trackVideoView(appName, videoId) {
+    // يمكن إضافة كود تتبع هنا
+    console.log(`تم فتح فيديو مراجعة: ${appName} - Video ID: ${videoId}`);
+    
+    // مثال لـ Google Analytics (إذا كان مثبت)
+    if (typeof gtag !== 'undefined') {
+        gtag('event', 'video_play', {
+            'app_name': appName,
+            'video_id': videoId,
+            'content_type': 'app_review'
+        });
+    }
+}
+
+// تتبع تحميل التطبيق
+function trackAppDownload(appName) {
+    console.log(`تم النقر على تحميل التطبيق: ${appName}`);
+    
+    if (typeof gtag !== 'undefined') {
+        gtag('event', 'app_download_click', {
+            'app_name': appName,
+            'source': 'video_modal'
+        });
+    }
+}
+
+// تحسينات اللمس للأجهزة المحمولة
+function initializeTouchEnhancements() {
+    if ('ontouchstart' in window) {
+        const appCards = document.querySelectorAll('.app-card');
+        
+        appCards.forEach(card => {
+            card.addEventListener('touchstart', function() {
+                this.classList.add('touch-active');
+            });
+            
+            card.addEventListener('touchend', function() {
+                setTimeout(() => {
+                    this.classList.remove('touch-active');
+                }, 300);
+            });
+        });
+    }
+}
+
+// تحسين الأداء للأنيميشن
+function optimizeAnimations() {
+    // تقليل الحركة إذا كان المستخدم يفضل ذلك
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        const style = document.createElement('style');
+        style.textContent = `
+            .app-card,
+            .play-button,
+            .video-overlay,
+            .modal-content {
+                transition: none !important;
+                animation: none !important;
+            }
+        `;
+        document.head.appendChild(style);
+    }
+}
+
+// تشغيل التحسينات عند التحميل
+document.addEventListener('DOMContentLoaded', function() {
+    initializeTouchEnhancements();
+    optimizeAnimations();
+});
+
+// تحسين الأداء مع Intersection Observer للأنيميشن
+if ('IntersectionObserver' in window) {
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+    
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('animate-in');
+            }
+        });
+    }, observerOptions);
+    
+    // مراقبة بطاقات التطبيقات
+    document.addEventListener('DOMContentLoaded', function() {
+        const appCards = document.querySelectorAll('.app-card');
+        appCards.forEach(card => observer.observe(card));
+    });
+}
+
+// إضافة تحسينات خاصة للأجهزة المحمولة
+function addMobileOptimizations() {
+    const isMobile = window.innerWidth <= 768;
+    
+    if (isMobile) {
+        // تبسيط التأثيرات على الجوال
+        const appCards = document.querySelectorAll('.app-card');
+        appCards.forEach(card => {
+            card.addEventListener('touchstart', function() {
+                this.style.transform = 'translateY(-10px) scale(1.02)';
+            });
+            
+            card.addEventListener('touchend', function() {
+                setTimeout(() => {
+                    this.style.transform = '';
+                }, 150);
+            });
+        });
+        
+        // تحسين المودال للجوال
+        const modal = document.getElementById('videoModal');
+        if (modal) {
+            modal.addEventListener('touchmove', function(e) {
+                e.preventDefault();
+            }, { passive: false });
+        }
+    }
+}
+
+// تشغيل التحسينات المحمولة
+document.addEventListener('DOMContentLoaded', addMobileOptimizations);
+window.addEventListener('resize', addMobileOptimizations);
+
+// إتاحة الدوال عالمياً للاستخدام من HTML
+window.openVideoModal = openVideoModal;
+window.closeVideoModal = closeVideoModal;

@@ -1,0 +1,20 @@
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://cro-apps.com/sitemap.xml
+
+# Crawl-delay for all bots
+Crawl-delay: 1
+
+# Block sensitive areas (if any in the future)
+# Disallow: /admin/
+# Disallow: /private/
+
+# Allow specific important files
+Allow: /style.css
+Allow: /script.js
+Allow: /*.jpg
+Allow: /*.png
+Allow: /*.svg
+Allow: /*.ico

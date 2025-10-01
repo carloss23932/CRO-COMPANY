@@ -202,6 +202,132 @@ h1, h2, h3, h4, h5 {
 
 /*
 ====================================
+  فواصل الأقسام (Section Dividers)
+====================================
+*/
+.section-divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 60px 0;
+    padding: 0 20px;
+    opacity: 0.8;
+}
+
+.divider-line {
+    flex: 1;
+    height: 2px;
+    background: linear-gradient(90deg, transparent 0%, var(--accent-color) 30%, var(--primary-color) 70%, transparent 100%);
+    max-width: 200px;
+}
+
+.divider-icon {
+    font-size: 2.5em;
+    margin: 0 30px;
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    filter: drop-shadow(0 4px 8px rgba(0, 119, 182, 0.3));
+    animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+}
+
+/* تحسين للشاشات الصغيرة */
+@media (max-width: 768px) {
+    .section-divider {
+        margin: 40px 0;
+    }
+    
+    .divider-line {
+        max-width: 80px;
+    }
+    
+    .divider-icon {
+        font-size: 2em;
+        margin: 0 20px;
+    }
+}
+
+/*
+====================================
+  تحسين قسم الاتصال
+====================================
+*/
+.contact-phone-number {
+    font-size: 1.3em;
+    font-weight: bold;
+    color: var(--primary-color);
+    margin: 10px 0;
+    text-align: center;
+}
+
+.contact-phone-number a {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-family: 'Courier New', monospace;
+    letter-spacing: 1px;
+    transition: var(--transition);
+}
+
+.contact-phone-number a:hover {
+    color: var(--accent-color);
+    transform: scale(1.05);
+}
+
+.contact-phone-desc {
+    font-size: 0.9em;
+    color: #666;
+    margin-bottom: 15px;
+    text-align: center;
+    font-style: italic;
+}
+
+.contact-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.contact-buttons .btn {
+    margin: 5px 0 !important;
+    padding: 8px 16px;
+    border-radius: 25px;
+    font-size: 0.85em;
+    min-width: 140px;
+    transition: all 0.3s ease;
+}
+
+.contact-buttons .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(0, 119, 182, 0.3);
+}
+
+.contact-item h4 {
+    color: var(--primary-color);
+    font-size: 1.2em;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.contact-icon {
+    font-size: 3em;
+    text-align: center;
+    margin-bottom: 15px;
+    filter: drop-shadow(0 2px 4px rgba(0, 119, 182, 0.3));
+}
+
+/*
+====================================
   الأقسام العامة (Sections)
 ====================================
 */
@@ -506,6 +632,18 @@ h1, h2, h3, h4, h5 {
 .form-group {
     margin-bottom: 20px;
 }
+
+/* حالة الإرسال */
+.form-status {
+    margin-top: 15px;
+    font-size: 0.95em;
+    padding: 12px 16px;
+    border-radius: 8px;
+    display: none;
+}
+.form-status.show { display: block; }
+.form-status.success { background: #e7f7ee; color: #0f5132; border: 1px solid #badbcc; }
+.form-status.error { background: #fdecea; color: #842029; border: 1px solid #f5c2c7; }
 
 .form-group input,
 .form-group select,
